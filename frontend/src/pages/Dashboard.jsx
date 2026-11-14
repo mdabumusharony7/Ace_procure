@@ -15,7 +15,7 @@ function Kpi({ label, value, note, tone, icon, color }) {
   );
 }
 
-// Solid line = actual monthly consumption (all items). Dashed segment = next-month forecast.
+
 function DemandChart({ actual, next }) {
   const W = 720, H = 260, P = { l: 48, r: 24, t: 20, b: 36 };
   const pts = actual.map((a) => ({ label: a.month.slice(2), v: a.quantity }));

@@ -8,7 +8,7 @@ from inventory.models import Item
 
 from .services import dashboard_summary, forecast_for_item, recommendation_for_item
 
-# SRS section 3: forecasts and recommendations are for the Manager (and system admin).
+
 MANAGERS = role_required(Profile.ROLE_ADMIN, Profile.ROLE_MANAGER)
 
 

@@ -9,7 +9,7 @@ STRONG = "Str0ng-Passw0rd!x"
 
 class AuthTests(APITestCase):
     def setUp(self):
-        cache.clear()   # reset the rate-limit counters between tests
+        cache.clear()   
 
     def register(self, **overrides):
         data = {
@@ -28,7 +28,7 @@ class AuthTests(APITestCase):
         self.assertIn("token", resp.data)
         self.assertEqual(resp.data["user"]["role"], "admin")
         user = User.objects.get(username="alice")
-        self.assertNotEqual(user.password, STRONG)           # never stored in plain text
+        self.assertNotEqual(user.password, STRONG)           
         self.assertTrue(user.password.startswith("pbkdf2_"))
         self.assertTrue(user.check_password(STRONG))
 
@@ -41,7 +41,7 @@ class AuthTests(APITestCase):
         self.assertEqual(self.register().status_code, 201)
         self.assertEqual(self.register(organization_name="test university", username="bob",
                                        email="bob@example.com").status_code, 400)
-        self.assertEqual(self.register(organization_name="Other Uni").status_code, 400)  # same username
+        self.assertEqual(self.register(organization_name="Other Uni").status_code, 400)  
 
     def test_login_success_and_failure(self):
         self.register()

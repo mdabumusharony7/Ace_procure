@@ -9,7 +9,7 @@ import Recommendations from "./pages/Recommendations.jsx";
 
 const ROLE_LABEL = { admin: "Administrator", manager: "Manager", store_officer: "Store Officer" };
 
-// Sidebar entries. `analyse` pages are only for admin/manager (SRS NFR4).
+
 const PAGES = [
   { id: "dashboard", label: "Dashboard", icon: "grid", analyse: true,
     title: "Procurement overview", sub: "Monitor spend, inventory demand and supplier activity." },
@@ -30,7 +30,7 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [help, setHelp] = useState(false);
 
-  // Restore the session if a token is stored.
+  
   useEffect(() => {
     if (!getToken()) return;
     api("/auth/me/")
@@ -46,7 +46,7 @@ export default function App() {
   }
 
   async function logout() {
-    try { await api("/auth/logout/", { method: "POST" }); } catch { /* token may already be invalid */ }
+    try { await api("/auth/logout/", { method: "POST" }); } catch { }
     setToken(null);
     setUser(null);
     setQuery("");

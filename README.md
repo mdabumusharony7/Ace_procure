@@ -21,23 +21,21 @@ Also implemented from the SRS: FR1 (organization registration), FR2 (role-based 
 You need Python 3.10+ and Node 18+.
 
 ```bash
-# 1. Backend
+
 cd backend
-python -m venv .venv && source .venv/bin/activate        # Windows: .venv\Scripts\activate
+python -m venv .venv && source .venv/bin/activate      
 pip install -r requirements.txt
-python manage.py makemigrations accounts inventory        # creates the migration files: commit them
+python manage.py makemigrations accounts inventory        
 python manage.py migrate
-python manage.py test                                     # runs all backend tests
+python manage.py test                                     
 python manage.py seed_demo --org "DIU Campus Supershop" \
     --username demo_admin --email demo@example.com --password '<pick a strong password>' \
     --store-username demo_store --store-password '<another strong password>'
-python manage.py runserver                                # http://127.0.0.1:8000
+python manage.py runserver                               
 
-# 2. Frontend (second terminal)
 cd frontend
 npm install
-npm run dev                                               # http://localhost:5173
-```
+npm run dev                                              
 
 No password is stored in the code. `SECRET_KEY` is read from `DJANGO_SECRET_KEY`, or generated once into `backend/.secret_key` (git-ignored). Passwords are saved as PBKDF2 hashes.
 
